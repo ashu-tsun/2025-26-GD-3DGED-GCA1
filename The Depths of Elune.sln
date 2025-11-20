@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Depths of Elune", "The Depths of Elune\The Depths of Elune.csproj", "{9CD6B06C-004B-44E8-9762-89C225A2117E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDEngine", "GDEngine\GDEngine.csproj", "{821212A2-9B26-4BA3-A647-D055FE6AA145}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CD6B06C-004B-44E8-9762-89C225A2117E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD6B06C-004B-44E8-9762-89C225A2117E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD6B06C-004B-44E8-9762-89C225A2117E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD6B06C-004B-44E8-9762-89C225A2117E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{821212A2-9B26-4BA3-A647-D055FE6AA145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{821212A2-9B26-4BA3-A647-D055FE6AA145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{821212A2-9B26-4BA3-A647-D055FE6AA145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{821212A2-9B26-4BA3-A647-D055FE6AA145}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2BA22A1-FF8D-4CB3-9568-C12C47DF0613}
+	EndGlobalSection
+EndGlobal
