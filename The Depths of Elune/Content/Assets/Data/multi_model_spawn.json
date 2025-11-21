@@ -4,106 +4,407 @@
     "author": "NMCG",
     "asset": "Multi game object loaded from JSON"
   },
-  "spawns": [
-    {
-      "position": [
-        -10,
-        5,
-        0
-      ],
-      "rotationDegrees": [
-        -90,
-        0,
-        0
-      ],
-      "scale": [
-        3,
-        3,
-        3
-      ],
-      "textureName": "celeste_texture",
-      "modelName": "celeste",
-      "objectName": "spawn-1"
-    },
-    {
-      "position": [
-        10,
-        10,
-        -5
-      ],
-      "rotationDegrees": [
-        -90,
-        45,
-        0
-      ],
-      "scale": [
-        2,
-        2,
-        2
-      ],
-      "textureName": "crate1",
-      "modelName": "mimic",
-      "objectName": "spawn-2"
-    },
-    {
-      "position": [
-        20,
-        10,
-        -5
-      ],
-      "rotationDegrees": [
-        -90,
-        45,
-        0
-      ],
-      "scale": [
-        2,
-        4,
-        2
-      ],
-      "textureName": "crate1",
-      "modelName": "monkey1",
-      "objectName": "spawn-3"
-    },
-    {
-      "position": [
-        30,
-        10,
-        -5
-      ],
-      "rotationDegrees": [
-        -90,
-        45,
-        0
-      ],
-      "scale": [
-        0.9,
-        2.6,
-        4.1
-      ],
-      "textureName": "ground",
-      "modelName": "cube",
-      "objectName": "spawn-4"
-    },
-    {
-      "position": [
-        50,
-        10,
-        -5
-      ],
-      "rotationDegrees": [
-        -90,
-        45,
-        -45
-      ],
-      "scale": [
-        0.5,
-        0.4,
-        0.3
-      ],
-      "textureName": "mona lisa",
-      "modelName": "teapot",
-      "objectName": "spawn-5"
-    }
-  ]
+    "spawns": [
+        {
+            //Celeste
+            "position": [
+                16,
+                -0.5,
+                -15
+            ],
+            "rotationDegrees": [
+                -90,
+                180,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "textureName": "celeste_texture",
+            "modelName": "celeste",
+            "objectName": "spawn-1"
+        },
+        {
+            //Mimic
+            "position": [
+                10,
+                10,
+                -5
+            ],
+            "rotationDegrees": [
+                -90,
+                45,
+                0
+            ],
+            "scale": [
+                2,
+                2,
+                2
+            ],
+            "textureName": "crate1",
+            "modelName": "mimic",
+            "objectName": "spawn-2"
+        },
+        {
+            //DELETE
+            "position": [
+                20,
+                10,
+                -5
+            ],
+            "rotationDegrees": [
+                -90,
+                45,
+                0
+            ],
+            "scale": [
+                2,
+                4,
+                2
+            ],
+            "textureName": "crate1",
+            "modelName": "monkey1",
+            "objectName": "spawn-3"
+        },
+        {
+            //DELETE
+            "position": [
+                30,
+                10,
+                -5
+            ],
+            "rotationDegrees": [
+                -90,
+                45,
+                0
+            ],
+            "scale": [
+                0.9,
+                2.6,
+                4.1
+            ],
+            "textureName": "ground",
+            "modelName": "cube",
+            "objectName": "spawn-4"
+        },
+        {
+            //DELETE
+            "position": [
+                50,
+                10,
+                -5
+            ],
+            "rotationDegrees": [
+                -90,
+                45,
+                -45
+            ],
+            "scale": [
+                0.5,
+                0.4,
+                0.3
+            ],
+            "textureName": "mona lisa",
+            "modelName": "teapot",
+            "objectName": "spawn-5"
+        },
+        {
+            //Main Room Back Wall
+            "position": [
+                0,
+                14.5,
+                -25
+            ],
+            "rotationDegrees": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                25,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "Wall",
+            "objectName": "spawn-3"
+        },
+        {
+            //Main Room Left Wall
+            "position": [
+                -25,
+                14.5,
+                0
+            ],
+            "rotationDegrees": [
+                0,
+                90,
+                0
+            ],
+            "scale": [
+                25,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "Wall",
+            "objectName": "spawn-4"
+        },
+        {
+            //Main Room Right Wall
+            "position": [
+                25,
+                14.5,
+                0
+            ],
+            "rotationDegrees": [
+                0,
+                270,
+                0
+            ],
+            "scale": [
+                25,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "Wall",
+            "objectName": "spawn-5"
+        },
+        {
+            //Main Room Front Wall
+            "position": [
+                0,
+                14.5,
+                25
+            ],
+            "rotationDegrees": [
+                0,
+                180,
+                0
+            ],
+            "scale": [
+                25,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "Wall",
+            "objectName": "spawn-6"
+        },
+        {
+            //Khaslana Room Left Wall
+            "position": [
+                -25,
+                14.5,
+                -50
+            ],
+            "rotationDegrees": [
+                0,
+                90,
+                0
+            ],
+            "scale": [
+                25,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "Wall",
+            "objectName": "spawn-7"
+        },
+        {
+            //Khaslana Room Right Wall
+            "position": [
+                25,
+                14.5,
+                -50
+            ],
+            "rotationDegrees": [
+                0,
+                270,
+                0
+            ],
+            "scale": [
+                25,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "Wall",
+            "objectName": "spawn-5"
+        },
+        {
+            //Middle Piece
+            "position": [
+                0,
+                0,
+                0
+            ],
+            "rotationDegrees": [
+                270,
+                0,
+                0
+            ],
+            "scale": [
+                -8,
+                -8,
+                0.5
+            ],
+            "textureName": "WallBrick",
+            "modelName": "MiddlePiece",
+            "objectName": "spawn-8"
+        },
+        {
+            //Mimin Room
+            "position": [
+                -60,
+                14.5,
+                0
+            ],
+            "rotationDegrees": [
+                0,
+                90,
+                0
+            ],
+            "scale": [
+                25,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "MimicWall",
+            "objectName": "spawn-9"
+        },
+        {
+            //Mimic Room
+            "position": [
+                -42.5,
+                14.5,
+                25
+            ],
+            "rotationDegrees": [
+                0,
+                180,
+                0
+            ],
+            "scale": [
+                17.5,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "MimicWall",
+            "objectName": "spawn-10"
+        },
+        {
+            //Mimic Room
+            "position": [
+                -42.5,
+                14.5,
+                0
+            ],
+            "rotationDegrees": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                17.5,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "MimicWall",
+            "objectName": "spawn-11"
+        },
+        {
+            //Top Left Room
+            "position": [
+                -42.5,
+                14.5,
+                -25
+            ],
+            "rotationDegrees": [
+                0,
+                0,
+                0
+            ],
+            "scale": [
+                17.5,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "TopLeftRoomWall",
+            "objectName": "spawn-12"
+        },
+        {
+            //Top Left Room
+            "position": [
+                -60,
+                14.5,
+                0
+            ],
+            "rotationDegrees": [
+                0,
+                90,
+                0
+            ],
+            "scale": [
+                25,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "TopLeftRoomWall",
+            "objectName": "spawn-13"
+        },
+        {
+            //Top Left Room
+            "position": [
+                -42.5,
+                14.5,
+                0.01
+            ],
+            "rotationDegrees": [
+                0,
+                180,
+                0
+            ],
+            "scale": [
+                17.5,
+                15,
+                10
+            ],
+            "textureName": "WallBrick",
+            "modelName": "TopLeftRoomWall",
+            "objectName": "spawn-14"
+        },
+        {
+            //Khaslana
+            "position": [
+                20,
+                4.75,
+                -10
+            ],
+            "rotationDegrees": [
+                -90,
+                0,
+                0
+            ],
+            "scale": [
+                1,
+                1,
+                1
+            ],
+            "textureName": "mona lisa",
+            "modelName": "khaslana",
+            "objectName": "spawn-15"
+        }
+
+
+    ]
 }

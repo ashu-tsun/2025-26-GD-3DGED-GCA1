@@ -18,73 +18,77 @@
       "contentPath": "assets/fonts/menufont"
     }
   ],
-  "textures": [
-    {
-      "name": "ground",
-      "contentPath": "assets/textures/foliage/ground/stone"
-    },
+    "textures": [
+        {
+            "name": "ground",
+            "contentPath": "assets/textures/foliage/ground/stone"
+        },
 
-    {
-      "name": "skybox_back",
-      "contentPath": "assets/textures/skybox/back"
-    },
-    {
-      "name": "skybox_front",
-      "contentPath": "assets/textures/skybox/front"
-    },
-    {
-      "name": "skybox_left",
-      "contentPath": "assets/textures/skybox/left"
-    },
-    {
-      "name": "celeste_texture",
-      "contentPath": "assets/textures/celeste_texture"
-    },
-    {
-      "name": "sky",
-      "contentPath": "assets/textures/skybox/sky"
-    },
+        {
+            "name": "skybox_back",
+            "contentPath": "assets/textures/skybox/back"
+        },
+        {
+            "name": "skybox_front",
+            "contentPath": "assets/textures/skybox/front"
+        },
+        {
+            "name": "skybox_left",
+            "contentPath": "assets/textures/skybox/left"
+        },
+        {
+            "name": "celeste_texture",
+            "contentPath": "assets/textures/celeste_texture"
+        },
+        {
+            "name": "sky",
+            "contentPath": "assets/textures/skybox/sky"
+        },
 
-    {
-      "name": "crate1",
-      "contentPath": "assets/textures/props/crates/crate1"
-    },
-    {
-      "name": "tree4",
-      "contentPath": "assets/textures/foliage/trees/tree4"
-    },
+        {
+            "name": "crate1",
+            "contentPath": "assets/textures/props/crates/crate1"
+        },
+        {
+            "name": "tree4",
+            "contentPath": "assets/textures/foliage/trees/tree4"
+        },
 
-    {
-      "name": "checkerboard",
-      "contentPath": "assets/textures/demo/checkerboard"
-    },
-    {
-      "name": "mona lisa",
-      "contentPath": "assets/textures/demo/mona lisa"
-    },
+        {
+            "name": "checkerboard",
+            "contentPath": "assets/textures/demo/checkerboard"
+        },
+        {
+            "name": "mona lisa",
+            "contentPath": "assets/textures/demo/mona lisa"
+        },
+        {
+            "name": "WallBrick",
+            "contentPath": "assets/textures/WallBrick"
+        },
 
-    {
-      "name": "star",
-      "contentPath": "assets/textures/ui/mouse/star"
-    },
-    {
-      "name": "Crosshair_21",
-      "contentPath": "assets/textures/ui/mouse/Crosshair_01"
-    },
+        {
+            "name": "star",
+            "contentPath": "assets/textures/ui/mouse/star"
+        },
+        {
+            "name": "Crosshair_21",
+            "contentPath": "assets/textures/ui/mouse/Crosshair_01"
+        },
 
-    {
-      "name": "mainmenu",
-      "contentPath": "assets/textures/ui/backgrounds/mainmenu"
-    },
-    {
-      "name": "mainmenu_monkey",
-      "contentPath": "assets/textures/ui/backgrounds/mainmenu_monkey"
-    },
-    {
-      "name": "controlsmenu_monkey",
-      "contentPath": "assets/textures/ui/backgrounds/controlsmenu_monkey"
-    }
-  ],
+        {
+            "name": "mainmenu",
+            "contentPath": "assets/textures/ui/backgrounds/mainmenu"
+        },
+        {
+            "name": "mainmenu_monkey",
+            "contentPath": "assets/textures/ui/backgrounds/mainmenu_monkey"
+        },
+        {
+            "name": "controlsmenu_monkey",
+            "contentPath": "assets/textures/ui/backgrounds/controlsmenu_monkey"
+        }
+    ],
     "models": [
         {
             "name": "monkey1",
@@ -113,6 +117,54 @@
         {
             "name": "plane",
             "contentPath": "assets/models/plane"
+        },
+        {
+            "name": "Wall",
+            "contentPath": "assets/models/Wall"
+        },
+        {
+            "name": "Wall2",
+            "contentPath": "assets/models/Wall2"
+        },
+        {
+            "name": "Wall3",
+            "contentPath": "assets/models/Wall3"
+        },
+        {
+            "name": "Wall4",
+            "contentPath": "assets/models/Wall4"
+        },
+        {
+            "name": "MiddlePiece",
+            "contentPath": "assets/models/MiddlePiece"
+        },
+        {
+            "name": "MimicWall",
+            "contentPath": "assets/models/MimicWall"
+        },
+        {
+            "name": "MimicWall2",
+            "contentPath": "assets/models/MimicWall2"
+        },
+        {
+            "name": "MimicWall3",
+            "contentPath": "assets/models/MimicWall3"
+        },
+        {
+            "name": "TopLeftRoomWall",
+            "contentPath": "assets/models/TopLeftRoomWall"
+        },
+        {
+            "name": "TopLeftRoomWall2",
+            "contentPath": "assets/models/TopLeftRoomWall2"
+        },
+        {
+            "name": "TopLeftRoomWall3",
+            "contentPath": "assets/models/TopLeftRoomWall2"
+        },
+        {
+            "name": "khaslana",
+            "contentPath": "assets/models/khaslana"
         }
     ],
   "sounds": [

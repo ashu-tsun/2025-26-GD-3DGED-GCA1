@@ -111,7 +111,7 @@ namespace The_Depths_of_Elune
             InitializeManagers();
 
             // Setup world
-            int scale = 50;
+            int scale = 300;
             InitializeSkyParent();
             InitializeSkyBox(scale);
             InitializeCollidableGround(scale);
@@ -547,7 +547,7 @@ namespace The_Depths_of_Elune
 
         }
 
-        private void InitializeCollidableGround(int scale = 50)
+        private void InitializeCollidableGround(int scale = 300)
         {
             GameObject gameObject = null;
             MeshFilter meshFilter = null;
@@ -565,7 +565,7 @@ namespace The_Depths_of_Elune
                  20);
 
 
-            gameObject.Transform.ScaleBy(new Vector3(scale, scale, 1));
+            gameObject.Transform.ScaleBy(new Vector3(scale*3, scale*3, 1));
             gameObject.Transform.RotateEulerBy(new Vector3(MathHelper.ToRadians(-90), 0, 0), true);
             gameObject.Transform.TranslateTo(new Vector3(0, -0.5f, 0));
 
