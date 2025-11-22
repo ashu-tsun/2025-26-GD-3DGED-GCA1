@@ -27,7 +27,7 @@ namespace The_Depths_of_Elune
 
         public static readonly string GROUND_TEXTURE_KEY = "ground_grass";
         public static readonly string GROUND_TEXTURE_PATH =
-            "assets/textures/foliage/ground/grass1";
+            "assets/textures/foliage/ground/grass";
 
         public static readonly string TREE_TEXTURE_KEY = "tree4";
 
@@ -42,8 +42,8 @@ namespace The_Depths_of_Elune
         public static readonly string SKYBOX_FRONT_TEXTURE_KEY = "skybox_front";
         public static readonly string SKYBOX_SKY_TEXTURE_KEY = "skybox_sky";
 
-        public static readonly string PLAYER_TEXTURE_KEY = "crate1";
-        public static readonly string PLAYER_MODEL_KEY = "monkey1";
+        public static readonly string PLAYER_TEXTURE_KEY = "checkerboard";
+        public static readonly string PLAYER_MODEL_KEY = "celeste";
 
         #endregion
 

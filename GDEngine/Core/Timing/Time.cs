@@ -79,6 +79,7 @@ namespace GDEngine.Core.Timing
         /// Fixed timestep for physics updates (in seconds). Default is 60 Hz.
         /// </summary>
         public static float FixedDeltaTime { get; set; } = 1.0f / 60.0f; // 16.67ms
+        public static int DeltaTime { get; internal set; }
 
         #endregion
 

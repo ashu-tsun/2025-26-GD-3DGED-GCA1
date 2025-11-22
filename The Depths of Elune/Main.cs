@@ -65,6 +65,7 @@ namespace The_Depths_of_Elune
         private int _damageAmount;
         private SoundEffectInstance _soundEffectInstance;
         private SoundEffect _soundEffect;
+        private Material _char;
         #endregion
 
         #region Core Methods (Common to all games)     
@@ -124,12 +125,11 @@ namespace The_Depths_of_Elune
 
             // Camera-demos
             InitializeAnimationCurves();
-
-
-           
-            DemoLoadFromJSON();
-            DemoOrchestration();
+            LoadFromJSON();
+            InitializeCharacters();
+            DemoOrchestrationSystem();
             #endregion
+
 
             // Setup renderers after all game objects added since ui text may use a gameobject as target
             InitializeUI();
@@ -158,9 +158,9 @@ namespace The_Depths_of_Elune
 
         private void InitializePlayer()
         {
-            GameObject player = InitializeModel(new Vector3(0, 5, 10),
-                new Vector3(0, 0, 0),
-                2 * Vector3.One, "crate1", "monkey1", AppData.PLAYER_NAME);
+            GameObject player = InitializeModel(new Vector3(0, 0, 0),
+                new Vector3(-90, 0, 0),
+                new Vector3(1, 1, 1), "checkerboard", "celeste", AppData.PLAYER_NAME);
 
             var simpleDriveController = new SimpleDriveController();
             player.AddComponent(simpleDriveController);
@@ -289,21 +289,19 @@ namespace The_Depths_of_Elune
             _matBasicLit.StateBlock = RenderStates.Opaque3D();
             #endregion
 
-            #region Alpha-test for foliage/billboards
-            var alphaFx = new AlphaTestEffect(GraphicsDevice)
+            #region Character Material (Without Culling for complex models)
+
+            var characterNoCull = new BasicEffect(_graphics.GraphicsDevice)
             {
+                TextureEnabled = true,
+                LightingEnabled = true,
+                PreferPerPixelLighting = true,
                 VertexColorEnabled = false
             };
-            _matAlphaCutout = new Material(alphaFx);
 
-            // Depth test/write on; no blending (cutout happens in the effect). 
-            // Make it two-sided so the quad is visible from both sides.
-            _matAlphaCutout.StateBlock = RenderStates.Cutout3D()
-                .WithRaster(new RasterizerState { CullMode = CullMode.None });
-
-            // Clamp avoids edge bleeding from transparent borders.
-            // (Use LinearWrap if the foliage textures tile.)
-            _matAlphaCutout.SamplerState = SamplerState.LinearClamp;
+            _char = new Material(litBasicEffect);
+            _char.StateBlock = RenderStates.Opaque3D().WithRaster(new RasterizerState { CullMode = CullMode.None });
+            _char.SamplerState = Microsoft.Xna.Framework.Graphics.SamplerState.LinearClamp;
 
             #endregion
         }
@@ -311,7 +309,7 @@ namespace The_Depths_of_Elune
         private void InitializeScene()
         {
             // Make a scene that will store all drawn objects and systems for that level
-            _scene = new Scene(EngineContext.Instance, "outdoors - level 1");
+            _scene = new Scene(EngineContext.Instance, "Main Level");
         }
 
         private void InitializeSystems()
@@ -322,6 +320,20 @@ namespace The_Depths_of_Elune
             InitializeInputSystem();  //input
             InitializeCameraAndRenderSystems(); //update cameras, draw renderable game objects, draw ui and menu
             InitializeAudioSystem();
+            InitializeOrchestrationSystem();
+        }
+
+        private void InitializeOrchestrationSystem()
+        {
+            var orchestrationSystem = new OrchestrationSystem();
+            orchestrationSystem.Configure(options =>
+            {
+                options.Time = Orchestrator.OrchestrationTime.Unscaled;
+                options.LocalScale = 1;
+                options.Paused = false;
+            });
+            _scene.Add(orchestrationSystem);
+
         }
 
         private void InitializeAudioSystem()
@@ -686,6 +698,7 @@ namespace The_Depths_of_Elune
 
             return gameObject;
         }
+        
         protected override void Update(GameTime gameTime)
         {
             //call time update
@@ -699,6 +712,7 @@ namespace The_Depths_of_Elune
 
             #endregion
 
+            DemoStuff();
 
             base.Update(gameTime);
         }
@@ -784,7 +798,43 @@ namespace The_Depths_of_Elune
 
         #region Demo Methods (remove in the game)
 
+        //Keep this for reference to stuff we wanna add
+        private void DemoStuff()
+        {
+            _newKBState = Keyboard.GetState();
+            DemoEventPublish();
+            DemoCameraSwitch();
+            DemoToggleFullscreen();
+            DemoAudioSystem();
+            DemoOrchestrationSystem();
+            _oldKBState = _newKBState;
+        }
 
+        private void DemoOrchestrationSystem()
+        {
+            var orchestrator = _scene.GetSystem<OrchestrationSystem>().Orchestrator;
+
+            bool isPressed = _newKBState.IsKeyDown(Keys.O) && !_oldKBState.IsKeyDown(Keys.O);
+            if (isPressed)
+            {
+                orchestrator.Build("my first sequence")
+                    .WaitSeconds(2)
+                    .Publish(new CameraChangeEvent(AppData.CAMERA_NAME_FIRST_PERSON))
+                    .WaitSeconds(2)
+                    .Publish(new PlaySfxEvent("SFX_UI_Click_Designed_Pop_Generic_1", 1, false, null))
+                    .Register();
+
+                orchestrator.Start("my first sequence", _scene, EngineContext.Instance);
+            }
+
+            bool isIPressed = _newKBState.IsKeyDown(Keys.I) && !_oldKBState.IsKeyDown(Keys.I);
+            if (isIPressed)
+                orchestrator.Pause("my first sequence");
+
+            bool isPPressed = _newKBState.IsKeyDown(Keys.P) && !_oldKBState.IsKeyDown(Keys.P);
+            if (isPPressed)
+                orchestrator.Resume("my first sequence");
+        }
 
         private void DemoAudioSystem()
         {
@@ -862,17 +912,12 @@ namespace The_Depths_of_Elune
             // F2: publish a test DamageEvent
             if (_newKBState.IsKeyDown(Keys.F6) && !_oldKBState.IsKeyDown(Keys.F6))
             {
-                _soundEffectInstance = _soundEffect.CreateInstance();
-                _soundEffectInstance.Pitch = 0.5f;
-                _soundEffectInstance.Play();
-
                 // Simple “debug” damage example
-                var cameraPos = _cameraGO.Transform.Position;
-                var hitPos = cameraPos + _cameraGO.Transform.Forward * 5f;
+                var hitPos = new Vector3(0, 5, 0); //some fake position
                 _damageAmount++;
 
                 var damageEvent = new DamageEvent(_damageAmount, DamageEvent.DamageType.Strength,
-                    "DebugGun", AppData.PLAYER_NAME, hitPos, false);
+                    "Plasma rifle", AppData.PLAYER_NAME, hitPos, false);
 
                 EngineContext.Instance.Events.Post(damageEvent);
             }
@@ -895,48 +940,10 @@ namespace The_Depths_of_Elune
             }
         }
 
-        private void DemoStatsToggle()
-        {
-            // F1: toggle stats overlay
-            if (_uiStatsRenderer != null)
-            {
-                if (_newKBState.IsKeyDown(Keys.F1) && !_oldKBState.IsKeyDown(Keys.F1))
-                    _uiStatsRenderer.Enabled = !_uiStatsRenderer.Enabled;
-            }
-        }
-
-        private void DemoOrchestration()
-        {
-            if (_orchestrationSystem == null)
-                return;
-
-            GameObject crate = _scene.Find((GameObject go) => go.Name.Equals("test crate textured cube"));
-            if (crate == null)
-                return;
-
-            Transform transform = crate.Transform;
-
-            Vector3 startPosition = transform.Position;
-            Vector3 peakPosition = startPosition + new Vector3(0, 5, 0);
-
-            Orchestrator orchestrator = _orchestrationSystem.Orchestrator;
-
-            orchestrator.Build("Demo_CrateBounce")
-                .WaitSeconds(1.0f)
-                .MoveTo(transform, peakPosition, 1.5f, Ease.EaseInOutSine)
-                .WaitSeconds(0.5f)
-                .MoveTo(transform, startPosition, 1.5f, Ease.EaseInOutSine)
-                .Register();
-        }
-
-        private void DemoLoadFromJSON()
+        private void LoadFromJSON()
         {
             var relativeFilePathAndName = "assets/data/single_model_spawn.json";
             List<ModelSpawnData> mList = JSONSerializationUtility.LoadData<ModelSpawnData>(Content, relativeFilePathAndName);
-
-            //load a single model
-            foreach (var d in mList)
-                InitializeModel(d.Position, d.RotationDegrees, d.Scale, d.TextureName, d.ModelName, d.ObjectName);
 
             relativeFilePathAndName = "assets/data/multi_model_spawn.json";
             //load multiple models
@@ -990,31 +997,58 @@ namespace The_Depths_of_Elune
             //  testCrateGO.Layer = LayerMask.World;
         }
 
-        private void DemoAlphaCutoutFoliage(Vector3 position, float width, float height)
+        private void InitializeCharacters()
         {
-            var go = new GameObject("tree");
+            //celeste
+            GameObject celeste = new GameObject("celeste");
 
             // A unit quad facing +Z (the factory already supplies lit quad with UVs)
-            var mf = MeshFilterFactory.CreateQuadTexturedLit(GraphicsDevice);
-            go.AddComponent(mf);
+            celeste = InitializeModel(new Vector3(16, -0.5f, -15), new Vector3(-90, -180, 0), new Vector3(1, 1, 1), "celeste_texture", "celeste","celeste");
 
-            var treeRenderer = go.AddComponent<MeshRenderer>();
-            treeRenderer.Material = _matAlphaCutout;
+            var textureRenderer = celeste.AddComponent<MeshRenderer>();
+            textureRenderer.Material = _char;
 
             // Per-object properties via the overrides block
-            treeRenderer.Overrides.MainTexture = _textureDictionary.Get("tree4");
+            textureRenderer.Overrides.MainTexture = _textureDictionary.Get("celeste_texture");
 
-            // AlphaTest: pixels with alpha below ReferenceAlpha are discarded (0–255).
-            // 128–160 is a good starting range for foliage; tweak to taste.
-            treeRenderer.Overrides.SetInt("ReferenceAlpha", 128);
-            treeRenderer.Overrides.Alpha = 1f; // overall alpha multiplier (kept at 1 for cutout)
+            //mimic         
+            GameObject mimic = new GameObject("mimic");
 
-            // Scale the quad so it looks like a tree (aspect from the PNG)
-            go.Transform.ScaleTo(new Vector3(width, height, 1f));
+            // A unit quad facing +Z (the factory already supplies lit quad with UVs)
+            mimic = InitializeModel(new Vector3(-50, -0.5f, 23), new Vector3(-90, 0, 0), new Vector3(3, 3, 3), "chest_texture", "Mimic", "mimic");
 
-            go.Transform.TranslateTo(position);
+            textureRenderer = mimic.AddComponent<MeshRenderer>();
+            textureRenderer.Material = _char;
 
-            _scene.Add(go);
+            // Per-object properties via the overrides block
+            textureRenderer.Overrides.MainTexture = _textureDictionary.Get("chest_texture");
+            _scene.Add(mimic);
+
+            //chest        
+            GameObject chest = new GameObject("chest");
+
+            // A unit quad facing +Z (the factory already supplies lit quad with UVs)
+            chest = InitializeModel(new Vector3(-50, -0.5f, 18), new Vector3(-90, 0, -30), new Vector3(3, 3, 3), "chest_texture", "Chest", "chest");
+
+            textureRenderer = chest.AddComponent<MeshRenderer>();
+            textureRenderer.Material = _char;
+
+            // Per-object properties via the overrides block
+            textureRenderer.Overrides.MainTexture = _textureDictionary.Get("chest_texture");
+            _scene.Add(chest);
+
+            //chest closed      
+            GameObject chestClosed = new GameObject("chestClosed");
+
+            // A unit quad facing +Z (the factory already supplies lit quad with UVs)
+            chestClosed = InitializeModel(new Vector3(-50, -0.5f, 13), new Vector3(-90, 0, 20), new Vector3(3, 3, 3), "chest_texture", "ClosedChest", "chest");
+
+            textureRenderer = chestClosed.AddComponent<MeshRenderer>();
+            textureRenderer.Material = _char;
+
+            // Per-object properties via the overrides block
+            textureRenderer.Overrides.MainTexture = _textureDictionary.Get("chest_texture");
+            _scene.Add(chestClosed);
         }
         #endregion
 

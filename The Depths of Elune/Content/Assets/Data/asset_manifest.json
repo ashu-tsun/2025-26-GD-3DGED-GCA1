@@ -41,6 +41,10 @@
             "contentPath": "assets/textures/celeste_texture"
         },
         {
+            "name": "chest_texture",
+            "contentPath": "assets/textures/chest_texture"
+        },
+        {
             "name": "sky",
             "contentPath": "assets/textures/skybox/sky"
         },
@@ -70,10 +74,6 @@
         {
             "name": "star",
             "contentPath": "assets/textures/ui/mouse/star"
-        },
-        {
-            "name": "Crosshair_21",
-            "contentPath": "assets/textures/ui/mouse/Crosshair_01"
         },
 
         {
@@ -113,6 +113,14 @@
         {
             "name": "mimic",
             "contentPath": "assets/models/Mimic"
+        },
+        {
+            "name": "Chest",
+            "contentPath": "assets/models/Chest"
+        },
+        {
+            "name": "closedChest",
+            "contentPath": "assets/models/ClosedChest"
         },
         {
             "name": "plane",
