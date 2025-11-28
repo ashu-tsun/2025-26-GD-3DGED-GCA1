@@ -254,8 +254,8 @@
                 1
             ],
             "textureName": "WallBrick",
-            "modelName": "BlankWall",
-            "objectName": "spawn-18"
+            "modelName": "TopLeftRoomWall",
+            "objectName": "spawn-19"
         },
         {
             //Khaslana
@@ -276,9 +276,8 @@
             ],
             "textureName": "mona lisa",
             "modelName": "khaslana",
-            "objectName": "spawn-19"
+            "objectName": "spawn-20"
         }
-
 
     ]
 }
