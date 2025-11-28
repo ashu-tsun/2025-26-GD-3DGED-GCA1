@@ -5,68 +5,68 @@
     "asset": "Multi game object loaded from JSON"
   },
     "spawns": [
-        {
+        { 
             //Main Room Back Wall
             "position": [
                 0,
-                14.5,
+                -0.5,
                 -25
             ],
             "rotationDegrees": [
-                0,
+                270,
                 0,
                 0
             ],
             "scale": [
-                25,
-                15,
-                10
+                0.3065,
+                0.3065,
+                0.3065
             ],
             "textureName": "WallBrick",
-            "modelName": "Wall",
-            "objectName": "spawn-6"
+            "modelName": "BigDoorWall",
+            "objectName": "spawn-1"
         },
         {
             //Main Room Left Wall
             "position": [
-                -25,
-                14.5,
+                -24.7,
+                -0.5,
                 0
             ],
             "rotationDegrees": [
+                270,
                 0,
-                90,
-                0
+                90
             ],
             "scale": [
-                25,
-                15,
-                10
+                0.3065,
+                0.3065,
+                0.3065
             ],
             "textureName": "WallBrick",
-            "modelName": "Wall",
-            "objectName": "spawn-7"
+            "modelName": "DoorWall",
+            "objectName": "spawn-2"
         },
         {
             //Main Room Right Wall
             "position": [
                 25,
-                14.5,
+                0.5,
                 0
             ],
             "rotationDegrees": [
-                0,
+                -90,
                 270,
                 0
             ],
             "scale": [
-                25,
-                15,
-                10
+                0.3065,
+                0.3065,
+                0.3065
             ],
             "textureName": "WallBrick",
-            "modelName": "Wall",
-            "objectName": "spawn-8"
+            "modelName": "DoorWall",
+            "objectName": "spawn-3"
         },
         {
             //Main Room Front Wall
@@ -76,18 +76,18 @@
                 25
             ],
             "rotationDegrees": [
-                0,
                 180,
+                0,
                 0
             ],
             "scale": [
-                25,
-                15,
-                10
+                25.3,
+                18.3,
+                1
             ],
             "textureName": "WallBrick",
-            "modelName": "Wall",
-            "objectName": "spawn-9"
+            "modelName": "BlankWall",
+            "objectName": "spawn-4"
         },
         {
             //Khaslana Room Left Wall
@@ -102,13 +102,13 @@
                 0
             ],
             "scale": [
-                25,
-                15,
-                10
+                25.3,
+                18.3,
+                1
             ],
             "textureName": "WallBrick",
-            "modelName": "Wall",
-            "objectName": "spawn-10"
+            "modelName": "BlankWall",
+            "objectName": "spawn-6"
         },
         {
             //Khaslana Room Right Wall
@@ -119,17 +119,17 @@
             ],
             "rotationDegrees": [
                 0,
-                270,
+                90,
                 0
             ],
             "scale": [
-                25,
-                15,
-                10
+                25.3,
+                18.3,
+                1
             ],
             "textureName": "WallBrick",
-            "modelName": "Wall",
-            "objectName": "spawn-11"
+            "modelName": "BlankWall",
+            "objectName": "spawn-7"
         },
         {
             //Khaslana Room Back Wall
@@ -144,13 +144,13 @@
                 0
             ],
             "scale": [
-                25,
-                15,
-                10
+                25.3,
+                18.3,
+                1
             ],
             "textureName": "WallBrick",
-            "modelName": "Wall",
-            "objectName": "spawn-12"
+            "modelName": "BlankWall",
+            "objectName": "spawn-8"
         },
         {
             //Middle Piece
@@ -171,28 +171,7 @@
             ],
             "textureName": "WallBrick",
             "modelName": "MiddlePiece",
-            "objectName": "spawn-13"
-        },
-        {
-            //Mimic Room
-            "position": [
-                -60,
-                14.5,
-                0
-            ],
-            "rotationDegrees": [
-                0,
-                90,
-                0
-            ],
-            "scale": [
-                25,
-                15,
-                10
-            ],
-            "textureName": "WallBrick",
-            "modelName": "MimicWall",
-            "objectName": "spawn-14"
+            "objectName": "spawn-9"
         },
         {
             //Mimic Room
@@ -202,42 +181,21 @@
                 25
             ],
             "rotationDegrees": [
-                0,
                 180,
-                0
-            ],
-            "scale": [
-                17.5,
-                15,
-                10
-            ],
-            "textureName": "WallBrick",
-            "modelName": "MimicWall",
-            "objectName": "spawn-15"
-        },
-        {
-            //Mimic Room
-            "position": [
-                -42.5,
-                14.5,
-                0
-            ],
-            "rotationDegrees": [
-                0,
                 0,
                 0
             ],
             "scale": [
-                17.5,
-                15,
-                10
+                16,
+                18.3,
+                1
             ],
             "textureName": "WallBrick",
-            "modelName": "MimicWall",
-            "objectName": "spawn-16"
+            "modelName": "BlankWall",
+            "objectName": "spawn-11"
         },
         {
-            //Top Left Room
+            //Top Left Room 
             "position": [
                 -42.5,
                 14.5,
@@ -249,16 +207,16 @@
                 0
             ],
             "scale": [
-                17.5,
-                15,
-                10
+                16,
+                18.3,
+                1
             ],
             "textureName": "WallBrick",
-            "modelName": "TopLeftRoomWall",
-            "objectName": "spawn-17"
+            "modelName": "BlankWall",
+            "objectName": "spawn-16"
         },
         {
-            //Top Left Room
+            //Top Left Room Middle
             "position": [
                 -60,
                 14.5,
@@ -270,16 +228,16 @@
                 0
             ],
             "scale": [
-                25,
-                15,
-                10
+                25.3,
+                18.3,
+                1
             ],
             "textureName": "WallBrick",
-            "modelName": "TopLeftRoomWall",
-            "objectName": "spawn-18"
+            "modelName": "BlankWall",
+            "objectName": "spawn-17"
         },
         {
-            //Top Left Room
+            //Top Left Room mid
             "position": [
                 -42.5,
                 14.5,
@@ -291,13 +249,13 @@
                 0
             ],
             "scale": [
-                17.5,
-                15,
-                10
+                16,
+                18.3,
+                1
             ],
             "textureName": "WallBrick",
-            "modelName": "TopLeftRoomWall",
-            "objectName": "spawn-19"
+            "modelName": "BlankWall",
+            "objectName": "spawn-18"
         },
         {
             //Khaslana
@@ -318,7 +276,7 @@
             ],
             "textureName": "mona lisa",
             "modelName": "khaslana",
-            "objectName": "spawn-20"
+            "objectName": "spawn-19"
         }
 
 

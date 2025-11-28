@@ -73,7 +73,7 @@
         }
     ],
     "models": [
-       
+
         {
             "name": "celeste",
             "contentPath": "assets/models/celeste"
@@ -89,7 +89,7 @@
         {
             "name": "closedChest",
             "contentPath": "assets/models/ClosedChest"
-        },       
+        },
         {
             "name": "Wall",
             "contentPath": "assets/models/Wall"
@@ -105,6 +105,26 @@
         {
             "name": "Wall4",
             "contentPath": "assets/models/Wall4"
+        },
+        {
+            "name": "BigDoorWall",
+            "contentPath": "assets/models/BigDoorWall"
+        },
+        {
+            "name": "DoorWall",
+            "contentPath": "assets/models/DoorWall"
+        },
+        {
+            "name": "BlankWall",
+            "contentPath": "assets/models/BlankWall"
+        },
+        {
+            "name": "CeilingMainRoom",
+            "contentPath": "assets/models/CeilingMainRoom"
+        },
+        {
+            "name": "CeilingRooms",
+            "contentPath": "assets/models/CeilingRooms"
         },
         {
             "name": "MiddlePiece",
