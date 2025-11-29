@@ -47,6 +47,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Assets/Fonts/perfStats.spritefont;Assets/Fonts/perfStats
 
+#begin Assets/Fonts/Romantica.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Assets/Fonts/Romantica.spritefont;Assets/Fonts/Romantica
+
 #begin Assets/Fonts/testfont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -269,6 +276,25 @@
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Compressed
 /build:Assets/Models/Floor.fbx;Assets/Models/Floor
+
+#begin Assets/Models/FullMoon.fbx
+/importer:FbxImporter
+/processor:ModelProcessor
+/processorParam:ColorKeyColor=0,0,0,0
+/processorParam:ColorKeyEnabled=True
+/processorParam:DefaultEffect=BasicEffect
+/processorParam:GenerateMipmaps=True
+/processorParam:GenerateTangentFrames=False
+/processorParam:PremultiplyTextureAlpha=True
+/processorParam:PremultiplyVertexColors=True
+/processorParam:ResizeTexturesToPowerOfTwo=False
+/processorParam:RotationX=0
+/processorParam:RotationY=0
+/processorParam:RotationZ=0
+/processorParam:Scale=1
+/processorParam:SwapWindingOrder=False
+/processorParam:TextureFormat=Compressed
+/build:Assets/Models/FullMoon.fbx;Assets/Models/FullMoon
 
 #begin Assets/Models/khaslana.fbx
 /importer:FbxImporter
@@ -607,6 +633,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/Architecture/Room/WallBrick.jpg;Assets/Textures/Architecture/Room/WallBrick
 
+#begin Assets/Textures/Props/Characters/celeste_portrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/Props/Characters/celeste_portrait.png;Assets/Textures/Props/Characters/celeste_portrait
+
 #begin Assets/Textures/Props/Characters/celeste_texture.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -631,6 +669,30 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/Props/Characters/chest_texture.png;Assets/Textures/Props/Characters/chest_texture
 
+#begin Assets/Textures/Props/Characters/elysia_portrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/Props/Characters/elysia_portrait.png;Assets/Textures/Props/Characters/elysia_portrait
+
+#begin Assets/Textures/Props/Characters/khaslana_portrait.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/Props/Characters/khaslana_portrait.png;Assets/Textures/Props/Characters/khaslana_portrait
+
 #begin Assets/Textures/Props/Characters/khaslana_texture.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -642,6 +704,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/Props/Characters/khaslana_texture.png;Assets/Textures/Props/Characters/khaslana_texture
+
+#begin Assets/Textures/Props/SigilTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/Props/SigilTexture.png;Assets/Textures/Props/SigilTexture
 
 #begin Assets/Textures/Skybox/back.bmp
 /importer:TextureImporter
@@ -738,6 +812,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/UI/Backgrounds/controlsmenu.png;Assets/Textures/UI/Backgrounds/controlsmenu
+
+#begin Assets/Textures/UI/Backgrounds/dialogue_texture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/UI/Backgrounds/dialogue_texture.png;Assets/Textures/UI/Backgrounds/dialogue_texture
 
 #begin Assets/Textures/UI/Backgrounds/exitmenu.png
 /importer:TextureImporter

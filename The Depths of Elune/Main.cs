@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using GDEngine.Core;
 using GDEngine.Core.Audio;
 using GDEngine.Core.Audio.Events;
@@ -14,6 +15,7 @@ using GDEngine.Core.Extensions;
 using GDEngine.Core.Factories;
 using GDEngine.Core.Input.Data;
 using GDEngine.Core.Input.Devices;
+using GDEngine.Core.Managers;
 using GDEngine.Core.Orchestration;
 using GDEngine.Core.Rendering;
 using GDEngine.Core.Rendering.UI;
@@ -31,6 +33,7 @@ using SharpDX.Direct2D1;
 using SharpDX.Direct2D1.Effects;
 using SharpDX.Direct3D9;
 using The_Depths_of_Elune;
+using The_Depths_of_Elune.UI;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using Color = Microsoft.Xna.Framework.Color;
 using Effect = Microsoft.Xna.Framework.Graphics.Effect;
@@ -69,6 +72,8 @@ namespace The_Depths_of_Elune
         private SoundEffectInstance _soundEffectInstance;
         private SoundEffect _soundEffect;
         private Material _char;
+        private DialogueBox _dialogueBox;
+        private DialogueManager _dialogueManager;
         #endregion
 
         #region Core Methods (Common to all games)     
@@ -121,21 +126,20 @@ namespace The_Depths_of_Elune
             InitializeCollidableGround(scale);
 
             // Setup player
-            InitializePlayer();
+            //InitializePlayer();
 
             #region Demos
             DemoPlaySoundEffect();
+            InitializeUI();
 
             // Camera-demos
             InitializeAnimationCurves();
             LoadFromJSON();
             InitializeCharacters();
             DemoOrchestrationSystem();
+            DemoCollidableModel(new Vector3(0, 10, 0), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
             #endregion
 
-
-            // Setup renderers after all game objects added since ui text may use a gameobject as target
-            InitializeUI();
 
             // Setup menu
             //InitializeMenu();
@@ -606,6 +610,7 @@ namespace The_Depths_of_Elune
         private void InitializeUI()
         {
             InitializeUIReticleRenderer();
+            InitializeUIText();
         }
 
 
@@ -625,52 +630,42 @@ namespace The_Depths_of_Elune
             reticle.RotationSpeedDegPerSec = 55;
             reticle.LayerDepth = UILayer.Cursor;
             uiGO.AddComponent(reticle);
-
-            // Distance/health lines under the cursor
-            //var waypointObject = _scene.Find((go) => go.Name.Equals("test crate textured cube"));
-            //var cameraObject = _scene.Find(go => go.Name.Equals("First person camera"));
-
-            ////no first person camera
-            //if (cameraObject != null)
-            //{
-
-            //    Func<IEnumerable<string>> linesProvider = () =>
-            //    {
-            //        var distToWaypoint = Vector3.Distance(
-            //            cameraObject.Transform.Position,
-            //            waypointObject.Transform.Position);
-            //        var hp = _dummyHealth;
-            //        return new[]
-            //        {
-            //        $"Dist: {distToWaypoint:F2} m",
-            //        $"Health:   {hp}"
-            //        };
-            //    };
-
-            //    // Text anchored at mouse, slightly below the reticle
-            //    var text = new UITextRenderer(uiFont);
-            //    //  text.PositionProvider = () => Mouse.GetState().Position.ToVector2();
-
-            //    text.PositionProvider = () => new Vector2(_graphics.PreferredBackBufferWidth / 2,
-            //                                              _graphics.PreferredBackBufferHeight / 2);
-
-            //    text.Anchor = TextAnchor.Center;
-            //    text.Offset = new Vector2(0, 50);
-            //    text.FallbackColor = Color.White;
-            //    text.DropShadow = true;
-            //    text.ShadowColor = Color.Black;
-
-            //    // Place HUD text below the cursor in the same pass
-            //    text.LayerDepth = UILayer.HUD;
-
-            //    text.TextProvider = () => string.Join("\n", linesProvider());
-
-            //    uiGO.AddComponent(text);
-            //}
             _scene.Add(uiGO);
 
             // Hide mouse since reticle will take its place
             IsMouseVisible = false;
+        }
+
+        private void InitializeUIText()
+        {
+            var dialogueFont = _fontDictionary.Get("menuFont");
+            var nameFont = _fontDictionary.Get("dialoguefont");
+            int boxHeight = 200;
+            int boxWidth = _graphics.PreferredBackBufferWidth - 100;
+            Rectangle dialogueBox = new Rectangle(
+                50,
+                _graphics.PreferredBackBufferHeight - boxHeight - 50,
+                boxWidth,
+                boxHeight
+            );
+            Texture2D dialogueTexture = _textureDictionary.Get("dialogue_texture");
+
+
+            var portraits = new Dictionary<string, Texture2D>()
+{
+            { "Elysia", _textureDictionary.Get("elysia_portrait") },
+            { "Celeste", _textureDictionary.Get("celeste_portrait") },
+            { "Khaslana", _textureDictionary.Get("khaslana_portrait") }
+};
+
+            _dialogueBox = new DialogueBox(nameFont,dialogueFont, dialogueTexture, GraphicsDevice, dialogueBox,portraits);
+
+            var dialogueGO = new GameObject("Dialogue System");
+            _dialogueManager = new DialogueManager(_dialogueBox);
+            dialogueGO.AddComponent(_dialogueManager);
+            dialogueGO.AddComponent(_dialogueBox);
+
+            _scene.Add(dialogueGO);
         }
 
 
@@ -1011,9 +1006,9 @@ namespace The_Depths_of_Elune
 
 
             var celesteController = celeste.AddComponent<CharacterController>();
-            celesteController.HasJustSpoken = false;
             celesteController.Scene = _scene;
             celesteController.CharID = "celeste";
+            celesteController.DialogueManager = _dialogueManager;
 
             var textureRenderer = celeste.AddComponent<MeshRenderer>();
             textureRenderer.Material = _char;
@@ -1026,12 +1021,12 @@ namespace The_Depths_of_Elune
             GameObject khaslana = new GameObject("khaslana");
 
             // A unit quad facing +Z (the factory already supplies lit quad with UVs)
-            khaslana = InitializeModel(new Vector3(20, 3f, -10), new Vector3(-90, 0, 0), new Vector3(1, 0.8f, 2), "khaslana_texture", "khaslana", "khaslana");
+            khaslana = InitializeModel(new Vector3(0, 3f, -60), new Vector3(-90, 0, 0), new Vector3(1, 0.8f, 2), "khaslana_texture", "khaslana", "khaslana");
 
             var khaslanaController = khaslana.AddComponent<CharacterController>();
-            khaslanaController.HasJustSpoken = false;
             khaslanaController.Scene = _scene;
             khaslanaController.CharID = "khaslana";
+            khaslanaController.DialogueManager = _dialogueManager;
 
             textureRenderer = khaslana.AddComponent<MeshRenderer>();
             textureRenderer.Material = _char;
@@ -1150,6 +1145,35 @@ namespace The_Depths_of_Elune
 
         }
         #endregion
+
+
+        private void DemoCollidableModel(Vector3 position, Vector3 eulerRotationDegrees, Vector3 scale)
+        {
+            var go = new GameObject("test");
+            go.Transform.TranslateTo(position);
+            go.Transform.RotateEulerBy(eulerRotationDegrees * MathHelper.Pi / 180f);
+            go.Transform.ScaleTo(scale);
+
+            var model = _modelDictionary.Get("fullMoon");
+            var texture = _textureDictionary.Get("sigil_texture");
+            var meshFilter = MeshFilterFactory.CreateFromModel(model, _graphics.GraphicsDevice, 0, 0);
+            go.AddComponent(meshFilter);
+
+            var meshRenderer = go.AddComponent<MeshRenderer>();
+            meshRenderer.Material = _matBasicLit;
+            meshRenderer.Overrides.MainTexture = texture;
+            _scene.Add(go);
+
+
+            // Add box collider (1x1x1 cube)
+            var collider = go.AddComponent<SphereCollider>();
+            collider.Diameter = scale.Length();
+
+            // Add rigidbody (Dynamic so it falls)
+            var rigidBody = go.AddComponent<RigidBody>();
+            rigidBody.BodyType = BodyType.Dynamic;
+            rigidBody.Mass = 1.0f;
+        }
     }
 
     

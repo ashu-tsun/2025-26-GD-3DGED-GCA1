@@ -152,27 +152,27 @@
             "modelName": "BlankWall",
             "objectName": "spawn-8"
         },
-        {
+        //{
             //Middle Piece
-            "position": [
-                0,
-                0,
-                0
-            ],
-            "rotationDegrees": [
-                270,
-                0,
-                0
-            ],
-            "scale": [
-                -8,
-                -8,
-                0.5
-            ],
-            "textureName": "WallBrick",
-            "modelName": "MiddlePiece",
-            "objectName": "spawn-9"
-        },
+            //"position": [
+             //   0,
+              //  0,
+              //  0
+           // ],
+           // "rotationDegrees": [
+             //   270,
+             //   0,
+            //    0
+          //  ],
+          //  "scale": [
+           //     -8,
+           //     -8,
+           //     0.5
+          //  ],
+           // "textureName": "WallBrick",
+          //  "modelName": "MiddlePiece",
+         //   "objectName": "spawn-9"
+       // },
         {
             //Mimic Room
             "position": [
@@ -256,27 +256,6 @@
             "textureName": "WallBrick",
             "modelName": "TopLeftRoomWall",
             "objectName": "spawn-19"
-        },
-        {
-            //Khaslana
-            "position": [
-                20,
-                4.75,
-                -10
-            ],
-            "rotationDegrees": [
-                -90,
-                0,
-                0
-            ],
-            "scale": [
-                1,
-                1,
-                1
-            ],
-            "textureName": "mona lisa",
-            "modelName": "khaslana",
-            "objectName": "spawn-20"
         }
 
     ]

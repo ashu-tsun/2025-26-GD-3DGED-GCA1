@@ -14,8 +14,12 @@
       "contentPath": "assets/fonts/uiReticleText"
     },
     {
-      "name": "menufont",
-      "contentPath": "assets/fonts/menufont"
+        "name": "menufont",
+        "contentPath": "assets/fonts/menufont"
+    },
+    {
+        "name": "dialoguefont",
+        "contentPath": "assets/fonts/Romantica"
     }
   ],
     "textures": [
@@ -48,6 +52,10 @@
             "contentPath": "assets/textures/props/characters/khaslana_texture"
         },
         {
+            "name": "sigil_texture",
+            "contentPath": "assets/textures/props/SigilTexture"
+        },
+        {
             "name": "sky",
             "contentPath": "assets/textures/skybox/sky"
         },
@@ -60,6 +68,22 @@
         {
             "name": "star",
             "contentPath": "assets/textures/ui/mouse/star"
+        },
+        {
+            "name": "dialogue_texture",
+            "contentPath": "assets/textures/ui/backgrounds/dialogue_texture"
+        },
+        {
+            "name": "celeste_portrait",
+            "contentPath": "assets/textures/props/characters/celeste_portrait"
+        },
+        {
+            "name": "elysia_portrait",
+            "contentPath": "assets/textures/props/characters/elysia_portrait"
+        },
+        {
+            "name": "khaslana_portrait",
+            "contentPath": "assets/textures/props/characters/khaslana_portrait"
         },
 
         {
@@ -160,6 +184,10 @@
         {
             "name": "khaslana",
             "contentPath": "assets/models/khaslana"
+        },
+        {
+            "name": "FullMoon",
+            "contentPath": "assets/models/FullMoon"
         }
     ],
     "sounds": [
