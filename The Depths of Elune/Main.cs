@@ -22,6 +22,7 @@ using GDEngine.Core.Rendering.UI;
 using GDEngine.Core.Serialization;
 using GDEngine.Core.Services;
 using GDEngine.Core.Systems;
+using GDEngine.Core.Systems.Base;
 using GDEngine.Core.Timing;
 using GDEngine.Core.Utilities;
 using GDGame.Demos.Controllers;
@@ -72,9 +73,10 @@ namespace The_Depths_of_Elune
         private int _damageAmount;
         private SoundEffectInstance _soundEffectInstance;
         private SoundEffect _soundEffect;
-        private Material _char;
+        private Material _char, _matt;
         private DialogueBox _dialogueBox;
         private DialogueManager _dialogueManager;
+        private GameObject playerParent;
         #endregion
 
         #region Core Methods (Common to all games)     
@@ -114,6 +116,9 @@ namespace The_Depths_of_Elune
             // Camera, UI, Menu, Physics, Rendering etc.
             InitializeSystems();
 
+            // Setup player
+            InitializePlayer();
+
             // All cameras we want in the game are loaded now and one set as active
             InitializeCameras();
 
@@ -126,8 +131,6 @@ namespace The_Depths_of_Elune
             InitializeSkyBox(scale);
             InitializeCollidableGround(scale);
 
-            // Setup player
-            //InitializePlayer();
 
             #region Demos
             DemoPlaySoundEffect();
@@ -177,18 +180,27 @@ namespace The_Depths_of_Elune
 
         private void InitializePlayer()
         {
-            GameObject player = InitializeModel(new Vector3(0, 0, 0),
-                new Vector3(-90, 0, 0),
-                new Vector3(1, 1, 1), "sky", "celeste", AppData.PLAYER_NAME);
-
-            var simpleDriveController = new SimpleDriveController();
-            player.AddComponent(simpleDriveController);
-
+            playerParent = new GameObject("PlayerParent");
+            playerParent.AddComponent<KeyboardWASDController>();    
+            playerParent.AddComponent<MouseYawPitchController>(); 
+            playerParent.Transform.TranslateTo(new Vector3(0, 0, 2)); 
+            
             // Listen for damage events on the player
-            player.AddComponent<DamageEventListener>();
-
+            playerParent.AddComponent<DamageEventListener>(); 
+            
             // Adds an inventory to the player
-            player.AddComponent<InventoryComponent>();
+            playerParent.AddComponent<InventoryComponent>(); 
+
+            GameObject playerModel = InitializeModel(new Vector3(0, 0, 0), new Vector3(-90, 0, 0), new Vector3(1, 1, 1), "celeste_texture", "celeste", AppData.PLAYER_NAME); 
+            
+            var playerCollider = playerParent.AddComponent<BoxCollider>(); 
+            playerCollider.Size = new Vector3(1, 2, 1); 
+
+            var playerRb = playerParent.AddComponent<RigidBody>(); 
+            playerRb.BodyType = BodyType.Kinematic; playerRb.Mass = 1f; 
+
+            playerModel.Transform.SetParent(playerParent); 
+            _scene.Add(playerParent);
         }
 
 
@@ -313,14 +325,30 @@ namespace The_Depths_of_Elune
             var characterNoCull = new BasicEffect(_graphics.GraphicsDevice)
             {
                 TextureEnabled = true,
-                LightingEnabled = true,
-                PreferPerPixelLighting = true,
+                LightingEnabled = false,
+                PreferPerPixelLighting = false,
                 VertexColorEnabled = false
             };
 
             _char = new Material(litBasicEffect);
             _char.StateBlock = RenderStates.Opaque3D().WithRaster(new RasterizerState { CullMode = CullMode.None });
             _char.SamplerState = Microsoft.Xna.Framework.Graphics.SamplerState.LinearClamp;
+
+            #endregion
+
+            #region Matt Material (Without Culling for complex models)
+
+            var materialNoCull = new BasicEffect(_graphics.GraphicsDevice)
+            {
+                TextureEnabled = true,
+                LightingEnabled = true,
+                PreferPerPixelLighting = false,
+                VertexColorEnabled = false
+            };
+
+            _matt = new Material(unlitBasicEffect);
+            _matt.StateBlock = RenderStates.Opaque3D().WithRaster(new RasterizerState { CullMode = CullMode.None });
+            _matt.SamplerState = Microsoft.Xna.Framework.Graphics.SamplerState.LinearClamp;
 
             #endregion
         }
@@ -447,33 +475,28 @@ namespace The_Depths_of_Elune
             thirdPersonController.ShoulderOffset = 0;
             thirdPersonController.FollowDistance = 50;
             thirdPersonController.RotationDamping = 20;
-            _cameraGO.AddComponent(thirdPersonController);
+            _cameraGO.Transform.SetParent(playerParent);
             _scene.Add(_cameraGO);
             #endregion
 
             #region First-person camera
-            var position = new Vector3(0, 5, 25);
-
-            //camera GO
             _cameraGO = new GameObject(AppData.CAMERA_NAME_FIRST_PERSON);
-            //set position 
-            _cameraGO.Transform.TranslateTo(position);
-            //add camera component to the GO
+
+            _cameraGO.Transform.SetParent(playerParent);
+            _cameraGO.Transform.TranslateTo(new Vector3(0, 4.5f, 3));
+
             _camera = _cameraGO.AddComponent<Camera>();
             _camera.FarPlane = 1000;
-            ////feed off whatever screen dimensions you set InitializeGraphics
             _camera.AspectRatio = (float)_graphics.PreferredBackBufferWidth / _graphics.PreferredBackBufferHeight;
-            _cameraGO.AddComponent<KeyboardWASDController>();
-            _cameraGO.AddComponent<MouseYawPitchController>();
 
-            // Add it to the scene
-            _scene.Add(_cameraGO);
+            //_cameraGO.AddComponent<MouseYawPitchController>();
+
             #endregion
 
-            // Set the active camera by finding and getting its camera component
-            var theCamera = _scene.Find(go => go.Name.Equals(AppData.CAMERA_NAME_FIRST_PERSON)).GetComponent<Camera>();
-            ////Obviously, since we have _camera we could also just use the line below
+            _scene.Add(_cameraGO);
 
+            var theCamera = _scene.Find(go => go.Name.Equals(AppData.CAMERA_NAME_FIRST_PERSON)).GetComponent<Camera>(); 
+            ////Obviously, since we have _camera we could also just use the line below 
             _scene.SetActiveCamera(theCamera);
         }
 
@@ -1167,7 +1190,7 @@ namespace The_Depths_of_Elune
 
                     //set the material and texture for the door
                     var doorMesh = doorGO.GetComponent<MeshRenderer>();
-                    doorMesh.Material = _char;
+                    doorMesh.Material = _matt;
                     doorMesh.Overrides.MainTexture = _textureDictionary.Get("DoorTexture");
 
                     //add the doorController 
@@ -1205,7 +1228,7 @@ namespace The_Depths_of_Elune
 
                     //set the material and texture for the door
                     var doorMesh = doorGO.GetComponent<MeshRenderer>();
-                    doorMesh.Material = _char;
+                    doorMesh.Material = _matt;
                     doorMesh.Overrides.MainTexture = _textureDictionary.Get("DoorTexture");
 
                     //add the doorController 
@@ -1412,7 +1435,7 @@ namespace The_Depths_of_Elune
                     var newDoor = InitializeModel(controller.OriginalPosition, controller.OriginalRotation, controller.OriginalScale, "DoorTexture", "KhasDoorOpen", controller.DoorID);
                     // give it renderer
                     var rend = newDoor.AddComponent<MeshRenderer>();
-                    rend.Material = _char;
+                    rend.Material = _matt;
                     _scene.Add(newDoor);
                 }
                 else
@@ -1427,7 +1450,7 @@ namespace The_Depths_of_Elune
                     var newDoor = InitializeModel(controller.OriginalPosition, controller.OriginalRotation, controller.OriginalScale, "DoorTexture", "OpenDoors", controller.DoorID);
                     // give it renderer
                     var rend = newDoor.AddComponent<MeshRenderer>();
-                    rend.Material = _char;
+                    rend.Material = _matt;
                     _scene.Add(newDoor);
                 }
                 else
