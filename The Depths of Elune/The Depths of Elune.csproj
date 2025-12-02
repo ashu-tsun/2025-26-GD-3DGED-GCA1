@@ -12,6 +12,18 @@
 		<ApplicationIcon>DOE LOGO.ico</ApplicationIcon>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Content\Assets\Models\MimicWall.fbx" />
+	  <None Remove="Content\Assets\Models\MimicWall2.fbx" />
+	  <None Remove="Content\Assets\Models\MimicWall3.fbx" />
+	  <None Remove="Content\Assets\Models\TopLeftRoomWall.fbx" />
+	  <None Remove="Content\Assets\Models\TopLeftRoomWall2.fbx" />
+	  <None Remove="Content\Assets\Models\TopLeftRoomWall3.fbx" />
+	  <None Remove="Content\Assets\Models\Wall.fbx" />
+	  <None Remove="Content\Assets\Models\Wall2.fbx" />
+	  <None Remove="Content\Assets\Models\Wall3.fbx" />
+	  <None Remove="Content\Assets\Models\Wall4.fbx" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Content Include="DOE LOGO.ico" />
 	</ItemGroup>
 	<ItemGroup>

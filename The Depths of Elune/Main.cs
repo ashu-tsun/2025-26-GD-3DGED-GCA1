@@ -138,7 +138,17 @@ namespace The_Depths_of_Elune
             LoadFromJSON();
             InitializeCharacters();
             DemoOrchestrationSystem();
+            //Main Room
             DemoCollidableModel(new Vector3(0, 10, 0), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
+            //Bottom Right Room
+            DemoCollidableModel(new Vector3(50, 10, 13), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
+            //Top Right Room
+            DemoCollidableModel(new Vector3(50, 10, -13), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
+            //Top Left Room
+            DemoCollidableModel(new Vector3(-50, 10, -13), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
+            //Mimic Room
+            DemoCollidableModel(new Vector3(-45.2f, 10, 3.2f), new Vector3(-90, 135, 0), new Vector3(0.5f, 0.5f, 0.5f));
+                            
             #endregion
 
 
@@ -1046,7 +1056,7 @@ namespace The_Depths_of_Elune
             GameObject mimic = new GameObject("mimic");
 
             // A unit quad facing +Z (the factory already supplies lit quad with UVs)
-            mimic = InitializeModel(new Vector3(-50, -0.5f, 23), new Vector3(-90, 0, 0), new Vector3(3, 3, 3), "chest_texture", "Mimic", "mimic");
+            //mimic = InitializeModel(new Vector3(-50, -0.5f, 23), new Vector3(-90, 0, 0), new Vector3(3, 3, 3), "chest_texture", "Mimic", "mimic");
 
             textureRenderer = mimic.AddComponent<MeshRenderer>();
             textureRenderer.Material = _char;
@@ -1059,7 +1069,7 @@ namespace The_Depths_of_Elune
             GameObject chest = new GameObject("chest");
 
             // A unit quad facing +Z (the factory already supplies lit quad with UVs)
-            chest = InitializeModel(new Vector3(-50, -0.5f, 18), new Vector3(-90, 0, -30), new Vector3(3, 3, 3), "chest_texture", "Chest", "chest");
+            //chest = InitializeModel(new Vector3(-50, -0.5f, 18), new Vector3(-90, 0, -30), new Vector3(3, 3, 3), "chest_texture", "Chest", "chest");
 
             textureRenderer = chest.AddComponent<MeshRenderer>();
             textureRenderer.Material = _char;
@@ -1075,9 +1085,14 @@ namespace The_Depths_of_Elune
             // defines a set of closed chests with ids and weather its a mimic or not
             var chestsClosed = new[]
            {
-                new { Position = new Vector3(-40, -0.5f, 13), Rotation = new Vector3(-90, 0, 0), Scale = new Vector3(3,3,3), ID = "Chest_01", IsMimic = false, HasJustOpened = false },
-                new { Position = new Vector3(-40, -0.5f, 18), Rotation = new Vector3(-90, 0, 0), Scale = new Vector3(3,3,3), ID = "Chest_02", IsMimic = true , HasJustOpened = false},
-                new { Position = new Vector3(-40, -0.5f, 23), Rotation = new Vector3(-90, 0, 0), Scale = new Vector3(3,3,3), ID = "Chest_03", IsMimic = true, HasJustOpened = false}
+                new { Position = new Vector3(-45, -0.5f, 3), Rotation = new Vector3(-90, -135, 0), Scale = new Vector3(3,3,3), ID = "Chest_01", IsMimic = false, HasJustOpened = false },
+                new { Position = new Vector3(-56, -0.5f, 8), Rotation = new Vector3(-90, 80, 0), Scale = new Vector3(3,3,3), ID = "Chest_02", IsMimic = true , HasJustOpened = false},
+                new { Position = new Vector3(-32, -0.5f, 22), Rotation = new Vector3(-90, 20, 0), Scale = new Vector3(3,3,3), ID = "Chest_03", IsMimic = true, HasJustOpened = false},
+                new { Position = new Vector3(-39, -0.5f, 11), Rotation = new Vector3(-90, -45, 0), Scale = new Vector3(3,3,3), ID = "Chest_04", IsMimic = true, HasJustOpened = false},
+                new { Position = new Vector3(-30, -0.5f, 6), Rotation = new Vector3(-90, 260, 0), Scale = new Vector3(3,3,3), ID = "Chest_05", IsMimic = true, HasJustOpened = false},
+                new { Position = new Vector3(-46, -0.5f, 14), Rotation = new Vector3(-90, 0, 0), Scale = new Vector3(3,3,3), ID = "Chest_06", IsMimic = true, HasJustOpened = false},
+                new { Position = new Vector3(-44, -0.5f, 23), Rotation = new Vector3(-90, 90, 0), Scale = new Vector3(3,3,3), ID = "Chest_07", IsMimic = true, HasJustOpened = false},
+                new { Position = new Vector3(-54, -0.5f, 22), Rotation = new Vector3(-90, -50, 0), Scale = new Vector3(3,3,3), ID = "Chest_08", IsMimic = true, HasJustOpened = false}
            };
 
             foreach (var c in chestsClosed)

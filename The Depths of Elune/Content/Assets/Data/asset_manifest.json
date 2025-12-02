@@ -208,6 +208,14 @@
         {
             "name": "FullMoon",
             "contentPath": "assets/models/FullMoon"
+        },
+        {
+            "name": "CeilingMainRoom",
+            "contentPath": "assets/models/CeilingMainRoom"
+        },
+        {
+            "name": "CeilingRooms",
+            "contentPath": "assets/models/CeilingRooms"
         }
     ],
     "sounds": [

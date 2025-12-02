@@ -1,11 +1,11 @@
 {
-  "version": 1,
-  "meta": {
-    "author": "NMCG",
-    "asset": "Multi game object loaded from JSON"
-  },
+    "version": 1,
+    "meta": {
+        "author": "NMCG",
+        "asset": "Multi game object loaded from JSON"
+    },
     "spawns": [
-        { 
+        {
             //Main Room Back Wall
             "position": [
                 0,
@@ -50,8 +50,8 @@
         {
             //Main Room Right Wall
             "position": [
-                25,
-                0.5,
+                24.75,
+                -0.5,
                 0
             ],
             "rotationDegrees": [
@@ -77,13 +77,13 @@
             ],
             "rotationDegrees": [
                 180,
-                0,
+                180,
                 0
             ],
             "scale": [
-                25.3,
-                18.3,
-                1
+                25.1,
+                14.9,
+                0.74
             ],
             "textureName": "WallBrick",
             "modelName": "BlankWall",
@@ -92,28 +92,28 @@
         {
             //Khaslana Room Left Wall
             "position": [
-                -25,
+                -25.75,
                 14.5,
                 -50
             ],
             "rotationDegrees": [
                 0,
-                90,
+                -90,
                 0
             ],
             "scale": [
-                25.3,
-                18.3,
-                1
+                24.26,
+                14.9,
+                0.74
             ],
             "textureName": "WallBrick",
             "modelName": "BlankWall",
-            "objectName": "spawn-6"
+            "objectName": "spawn-5"
         },
         {
             //Khaslana Room Right Wall
             "position": [
-                25,
+                25.75,
                 14.5,
                 -50
             ],
@@ -123,13 +123,13 @@
                 0
             ],
             "scale": [
-                25.3,
-                18.3,
-                1
+                24.26,
+                14.9,
+                0.74
             ],
             "textureName": "WallBrick",
             "modelName": "BlankWall",
-            "objectName": "spawn-7"
+            "objectName": "spawn-6"
         },
         {
             //Khaslana Room Back Wall
@@ -140,83 +140,83 @@
             ],
             "rotationDegrees": [
                 0,
-                0,
+                180,
                 0
             ],
             "scale": [
-                25.3,
-                18.3,
-                1
+                25.1,
+                14.9,
+                0.74
             ],
             "textureName": "WallBrick",
             "modelName": "BlankWall",
-            "objectName": "spawn-8"
+            "objectName": "spawn-7"
         },
         //{
-            //Middle Piece
-            //"position": [
-             //   0,
-              //  0,
-              //  0
-           // ],
-           // "rotationDegrees": [
-             //   270,
-             //   0,
-            //    0
-          //  ],
-          //  "scale": [
-           //     -8,
-           //     -8,
-           //     0.5
-          //  ],
-           // "textureName": "WallBrick",
-          //  "modelName": "MiddlePiece",
-         //   "objectName": "spawn-9"
-       // },
+        //Middle Piece
+        //"position": [
+        //   0,
+        //  0,
+        //  0
+        // ],
+        // "rotationDegrees": [
+        //   270,
+        //   0,
+        //    0
+        //  ],
+        //  "scale": [
+        //     -8,
+        //     -8,
+        //     0.5
+        //  ],
+        // "textureName": "WallBrick",
+        //  "modelName": "MiddlePiece",
+        //   "objectName": "spawn-9"
+        // },
         {
-            //Mimic Room
+            //Left Rooms Front Wall
             "position": [
-                -42.5,
+                -42.85,
                 14.5,
                 25
             ],
             "rotationDegrees": [
                 180,
-                0,
+                180,
                 0
             ],
             "scale": [
-                16,
-                18.3,
-                1
+                16.4,
+                14.9,
+                0.74
             ],
             "textureName": "WallBrick",
             "modelName": "BlankWall",
-            "objectName": "spawn-11"
+            "objectName": "spawn-8"
         },
         {
-            //Top Left Room 
+            //Left Room Back Wall
             "position": [
-                -42.5,
+                -42.85,
                 14.5,
                 -25
             ],
             "rotationDegrees": [
                 0,
-                0,
+                180,
                 0
             ],
             "scale": [
-                16,
-                18.3,
-                1
+                16.4,
+                14.9,
+                0.74
             ],
             "textureName": "WallBrick",
             "modelName": "BlankWall",
-            "objectName": "spawn-16"
+            "objectName": "spawn-9"
         },
         {
-            //Top Left Room Middle
+            //Left Rooms Left Wall
             "position": [
                 -60,
                 14.5,
@@ -224,22 +224,22 @@
             ],
             "rotationDegrees": [
                 0,
-                90,
+                -90,
                 0
             ],
             "scale": [
-                25.3,
-                18.3,
-                1
+                25.1,
+                14.9,
+                0.74
             ],
             "textureName": "WallBrick",
             "modelName": "BlankWall",
-            "objectName": "spawn-17"
+            "objectName": "spawn-10"
         },
         {
-            //Top Left Room mid
+            //Left Rooms Wall Divider
             "position": [
-                -42.5,
+                -42.85,
                 14.5,
                 0.01
             ],
@@ -249,14 +249,182 @@
                 0
             ],
             "scale": [
-                16,
-                18.3,
-                1
+                16.4,
+                14.9,
+                0.74
             ],
             "textureName": "WallBrick",
-            "modelName": "TopLeftRoomWall",
-            "objectName": "spawn-19"
+            "modelName": "BlankWall",
+            "objectName": "spawn-11"
+        },
+        {
+            //Right Rooms Front Wall
+            "position": [
+                42.85,
+                14.5,
+                25
+            ],
+            "rotationDegrees": [
+                180,
+                180,
+                0
+            ],
+            "scale": [
+                16.4,
+                14.9,
+                0.74
+            ],
+            "textureName": "WallBrick",
+            "modelName": "BlankWall",
+            "objectName": "spawn-12"
+        },
+        {
+            //Right Room Back Wall
+            "position": [
+                42.85,
+                14.5,
+                -25
+            ],
+            "rotationDegrees": [
+                0,
+                180,
+                0
+            ],
+            "scale": [
+                16.4,
+                14.9,
+                0.74
+            ],
+            "textureName": "WallBrick",
+            "modelName": "BlankWall",
+            "objectName": "spawn-13"
+        },
+        {
+            //Right Rooms Left Wall
+            "position": [
+                60,
+                14.5,
+                0
+            ],
+            "rotationDegrees": [
+                0,
+                -90,
+                0
+            ],
+            "scale": [
+                25.1,
+                14.9,
+                0.74
+            ],
+            "textureName": "WallBrick",
+            "modelName": "BlankWall",
+            "objectName": "spawn-14"
+        },
+        {
+            //Right Rooms Wall Divider
+            "position": [
+                42.85,
+                14.5,
+                0
+            ],
+            "rotationDegrees": [
+                0,
+                180,
+                0
+            ],
+            "scale": [
+                16.4,
+                14.9,
+                0.74
+            ],
+            "textureName": "WallBrick",
+            "modelName": "BlankWall",
+            "objectName": "spawn-15"
+        },
+        {
+            //Ceiling Main Room
+            "position": [
+                0,
+                29.89,
+                0
+            ],
+            "rotationDegrees": [
+                -90,
+                0,
+                0
+            ],
+            "scale": [
+                15,
+                15,
+                0.5
+            ],
+            "textureName": "WallBrick",
+            "modelName": "CeilingMainRoom",
+            "objectName": "spawn-16"
+        },
+        {
+            //Ceiling Left Rooms
+            "position": [
+                -43.5,
+                29.4,
+                0
+            ],
+            "rotationDegrees": [
+                -90,
+                0,
+                0
+            ],
+            "scale": [
+                0.34,
+                0.5,
+                0.5
+            ],
+            "textureName": "WallBrick",
+            "modelName": "CeilingRooms",
+            "objectName": "spawn-17"
+        },
+        {
+            //Ceiling Right Rooms
+            "position": [
+                43.5,
+                29.4,
+                0
+            ],
+            "rotationDegrees": [
+                -90,
+                0,
+                0
+            ],
+            "scale": [
+                0.34,
+                0.5,
+                0.5
+            ],
+            "textureName": "WallBrick",
+            "modelName": "CeilingRooms",
+            "objectName": "spawn-18"
+        },
+        {
+            //Ceiling Khaslana Room
+            "position": [
+                0,
+                29.4,
+                -50
+            ],
+            "rotationDegrees": [
+                -90,
+                0,
+                0
+            ],
+            "scale": [
+                0.5,
+                0.48,
+                0.5
+            ],
+            "textureName": "WallBrick",
+            "modelName": "CeilingRooms",
+            "objectName": "spawn-18"
         }
-
     ]
 }
+
