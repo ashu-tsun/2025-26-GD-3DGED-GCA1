@@ -91,7 +91,7 @@ namespace GDEngine.Core.Components.Controllers
             //TODO: change the keys to E after the demo code is dealt with (E gives a weapon type into inventory and breaks)
             CheckPlayerDistance();
             var inputSystem = _scene.GetSystem<InputSystem>();
-            if (!_isOpened && _playerNearby && Keyboard.GetState().IsKeyDown(Keys.F))
+            if (!_isOpened && _playerNearby && Keyboard.GetState().IsKeyDown(Keys.E))
             {
                 OpenChest();
             }
@@ -129,19 +129,13 @@ namespace GDEngine.Core.Components.Controllers
             System.Diagnostics.Debug.WriteLine("Chest opened");
 
 
-            if (IsReal)
-            {
-                GiveSigil();
-                //test REMOVE LATER
-                //System.Diagnostics.Debug.WriteLine("YOU GOT A SIGIL");
-            }
-            else
+            if (!IsReal)
             {
                 TriggerDeath();
-                //test REMOVE LATER
-                //System.Diagnostics.Debug.WriteLine("MIMIC YOU DIE");
-            }
 
+               
+            }
+           
             ChangeToOpenedModel();
         }
         #endregion
@@ -149,13 +143,6 @@ namespace GDEngine.Core.Components.Controllers
 
 
         #region Helpers
-        private void GiveSigil()
-        {
-
-            RecievedSigil = true;
-            System.Diagnostics.Debug.WriteLine("Sigil recieved!");
-            
-        }
 
         private void TriggerDeath()
         {

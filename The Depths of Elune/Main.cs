@@ -150,18 +150,14 @@ namespace The_Depths_of_Elune
             InitializeCharacters();
             InitializeRoom();
             DemoOrchestrationSystem();
+            
             //Main Room
-            DemoCollidableModel(new Vector3(0, 10, 0), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
-            //Bottom Right Room
-            DemoCollidableModel(new Vector3(50, 10, 13), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
-            //Top Right Room
-            DemoCollidableModel(new Vector3(50, 10, -13), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
-            //Top Left Room
-            DemoCollidableModel(new Vector3(-50, 10, -13), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
-            //Mimic Room
-            DemoCollidableModel(new Vector3(-45.2f, 10, 3.2f), new Vector3(-90, 135, 0), new Vector3(0.5f, 0.5f, 0.5f));
-                            
+            DemoCollidableModel(new Vector3(0, 10, 0), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f), "FullMoon", "Sigil_Full");
+            DemoCollidableModel(new Vector3(20, 0, 20), new Vector3(-90, 0, 0), new Vector3(0.3f, 0.3f, 0.3f), "GibSigil", "Sigil_Full");
+
+
             #endregion
+
 
 
             // Setup menu
@@ -795,11 +791,13 @@ namespace The_Depths_of_Elune
             //Time.TimeScale = 0;
 
             #endregion
-
-            DemoStuff();
+            _newKBState = Keyboard.GetState();
+            // DemoStuff();
+            DemoToggleFullscreen();
             checkDialogue();
             checkGameState();
-
+            SigilPickup();    
+            _oldKBState = _newKBState;
 
             base.Update(gameTime);
         }
@@ -887,7 +885,7 @@ namespace The_Depths_of_Elune
         private void DemoStuff()
         {
             _newKBState = Keyboard.GetState();
-            //DemoEventPublish();
+           // DemoEventPublish();
             DemoCameraSwitch();
             DemoToggleFullscreen();
             //DemoAudioSystem();
@@ -1021,7 +1019,7 @@ namespace The_Depths_of_Elune
             // Raise inventory event
             if (_newKBState.IsKeyDown(Keys.E) && !_oldKBState.IsKeyDown(Keys.E))
             {
-                var inventoryEvent = new InventoryEvent();
+                var inventoryEvent = new GDEngine.Core.Components.InventoryEvent();
                 inventoryEvent.ItemType = ItemType.Weapon;
                 inventoryEvent.Value = 10;
                 EngineContext.Instance.Events.Publish(inventoryEvent);
@@ -1029,11 +1027,12 @@ namespace The_Depths_of_Elune
 
             if (_newKBState.IsKeyDown(Keys.L) && !_oldKBState.IsKeyDown(Keys.L))
             {
-                var inventoryEvent = new InventoryEvent();
+                var inventoryEvent = new GDEngine.Core.Components.InventoryEvent();
                 inventoryEvent.ItemType = ItemType.Lore;
                 inventoryEvent.Value = 0;
                 EngineContext.Instance.Events.Publish(inventoryEvent);
             }
+
         }
 
         private void LoadFromJSON()
@@ -1224,8 +1223,8 @@ namespace The_Depths_of_Elune
           {
                 //mimic room door (First door on the left)
                 new { Position = new Vector3(-26f, -1, 12.5f), Rotation = new Vector3(-90, -90, 0), Scale = new Vector3(0.30f,0.35f,0.35f), ID = "Door_01", IsLocked = false, HasJustOpened = false, IsKhasDoor = false },
-                //Second door on the left
-                new { Position = new Vector3(-26f, -1, -12.5f), Rotation = new Vector3(-90, -90, 0), Scale = new Vector3(0.30f,0.35f,0.35f), ID = "Door_02", IsLocked = false, HasJustOpened = false, IsKhasDoor = false },
+                //Second door on the left 
+                new { Position = new Vector3(-26f, -1, -12.5f), Rotation = new Vector3(-90, -90, 0), Scale = new Vector3(0.30f,0.35f,0.35f), ID = "Door_02", IsLocked = true, HasJustOpened = false, IsKhasDoor = false },
                 //first door to the right
                 new { Position = new Vector3(26f, -1, 12.5f), Rotation = new Vector3(-90, -270, 0), Scale = new Vector3(0.30f,0.35f,0.35f), ID = "Door_03", IsLocked = true, HasJustOpened = false, IsKhasDoor = false},
                  //first door to the right
@@ -1465,6 +1464,8 @@ namespace The_Depths_of_Elune
                 renderer.Material = _char;
 
                 _sceneManager.ActiveScene.Add(newChest);
+
+                spawnSigilChest();
             }
             else
             {
@@ -1519,14 +1520,14 @@ namespace The_Depths_of_Elune
                 }
             }
         }
-        private void DemoCollidableModel(Vector3 position, Vector3 eulerRotationDegrees, Vector3 scale)
+        private void DemoCollidableModel(Vector3 position, Vector3 eulerRotationDegrees, Vector3 scale, string modelName, string sigilName)
         {
-            var go = new GameObject("test");
+            var go = new GameObject(sigilName);
             go.Transform.TranslateTo(position);
             go.Transform.RotateEulerBy(eulerRotationDegrees * MathHelper.Pi / 180f);
             go.Transform.ScaleTo(scale);
 
-            var model = _modelDictionary.Get("fullMoon");
+            var model = _modelDictionary.Get(modelName);
             var texture = _textureDictionary.Get("sigil_texture");
             var meshFilter = MeshFilterFactory.CreateFromModel(model, _graphics.GraphicsDevice, 0, 0);
             go.AddComponent(meshFilter);
@@ -1577,6 +1578,51 @@ namespace The_Depths_of_Elune
                 mimicController.gameLost = false;
             }
         }
-        
+
+        private void spawnSigilChest()
+        {
+            //Mimic Room
+            DemoCollidableModel(new Vector3(-45.2f, 0, 3.2f), new Vector3(-90, 135, 0), new Vector3(0.5f, 0.5f, 0.5f), "DarkMoon", "Sigil_Dark");
+        }
+
+        private void SigilPickup()
+        {
+            
+            // press E to pick up
+            if (_newKBState.IsKeyDown(Keys.E) && !_oldKBState.IsKeyDown(Keys.E))
+            {
+                //gets the current camera and its pos to track range
+                var scene = _sceneManager.ActiveScene;
+                var CameraGO = scene.GetActiveCamera().GameObject;
+                var CameraPos = CameraGO.Transform.Position;
+
+                //checks through all the game objects in the scene
+                foreach (var go in scene.GameObjects)
+                {
+                    //if the game object is a sigil
+                    if (!go.Name.StartsWith("Sigil"))
+                        continue;
+
+                    //gets the distance between sigil and camera 
+                    float range = Vector3.Distance(go.Transform.Position, CameraPos);
+
+                    //if camera is within this range of sigil
+                    if (range < 10.0f) 
+                    {
+                        //add sigil to inventory
+                        var inventoryEvent = new GDEngine.Core.Components.InventoryEvent();
+                        inventoryEvent.ItemType = ItemType.Sigil;
+                        inventoryEvent.Value = 1;
+                        EngineContext.Instance.Events.Publish(inventoryEvent);
+
+                        System.Diagnostics.Debug.WriteLine("Picked up a sigil!");
+
+                        // remove it from scene
+                        scene.Remove(go);
+                        break;
+                    }
+                }
+            }
+        }
     }    
 }
