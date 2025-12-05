@@ -95,7 +95,7 @@ namespace GDEngine.Core.Components.Controllers
             //TODO: change the keys to E after the demo code is dealt with (E gives a weapon type into inventory and breaks)
             CheckPlayerDistance();
             var inputSystem = _scene.GetSystem<InputSystem>();
-            if (!_isOpened && _playerNearby && Keyboard.GetState().IsKeyDown(Keys.F) && DialogueManager != null && !DialogueManager.IsDialogueActive)
+            if (!_isOpened && _playerNearby && Keyboard.GetState().IsKeyDown(Keys.E) && DialogueManager != null && !DialogueManager.IsDialogueActive)
             {
                 OpenChest();
             }
@@ -139,6 +139,10 @@ namespace GDEngine.Core.Components.Controllers
 
                
             }
+            if(IsReal)
+            {
+                sigilDialogue();
+            }
            
             ChangeToOpenedModel();
         }
@@ -147,19 +151,15 @@ namespace GDEngine.Core.Components.Controllers
 
 
         #region Helpers
-        private void GiveSigil()
+        private void sigilDialogue()
         {
-
-            RecievedSigil = true;
-            System.Diagnostics.Debug.WriteLine("Sigil recieved!");
-
             if (DialogueManager.IsDialogueActive)
             {
                 return;
             }
 
             var dialogue = new List<DialogueLine>();
-            dialogue.Add(new DialogueLine("Elysia", "I collected some sort of moon sigil. This must be important."));
+            dialogue.Add(new DialogueLine("Elysia", "This must be the last sigil"));
             DialogueManager.StartDialogue(dialogue);
         }
 

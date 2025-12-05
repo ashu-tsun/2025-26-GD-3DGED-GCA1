@@ -115,7 +115,7 @@ namespace The_Depths_of_Elune.UI
             }
 
             //Hint message
-            _spriteBatch.DrawString(_nameFont, "Press F to continue", new Vector2(_boxSize.X +_boxSize.Width-250,_boxSize.Y + _boxSize.Height), Color.White,
+            _spriteBatch.DrawString(_nameFont, "Press E to continue", new Vector2(_boxSize.X +_boxSize.Width-250,_boxSize.Y + _boxSize.Height), Color.White,
                 0f, Vector2.Zero, 1f, SpriteEffects.None, UILayer.HUD);
 
             //NPC name

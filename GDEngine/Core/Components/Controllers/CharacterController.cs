@@ -77,10 +77,10 @@ namespace GDEngine.Core.Components.Controllers
             var inputSystem = _scene.GetSystem<InputSystem>();
             //Store keyboard state and check if the right key is pressed
             var currentKeyState = Keyboard.GetState();
-            bool fPressed = currentKeyState.IsKeyDown(Keys.F) && !_oldKeyState.IsKeyDown(Keys.F);
+            bool ePressed = currentKeyState.IsKeyDown(Keys.E) && !_oldKeyState.IsKeyDown(Keys.E);
 
             //Check if the player is near a character, the dialogueManager isnt null and that dialogue isnt already active
-            if (_playerNearby && fPressed && DialogueManager != null && !DialogueManager.IsDialogueActive)
+            if (_playerNearby && ePressed && DialogueManager != null && !DialogueManager.IsDialogueActive)
             {
                 talk();
             }

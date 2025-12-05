@@ -154,7 +154,7 @@ namespace The_Depths_of_Elune
             DemoOrchestrationSystem();
             
             //Main Room
-            DemoCollidableModel(new Vector3(0, 10, 0), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f), "FullMoon", "Sigil_Full");
+            DemoCollidableModel(new Vector3(0, 40, 0), new Vector3(-90, 0, 0), new Vector3(0.5f, 0.5f, 0.5f), "FullMoon", "Sigil_Full");
             DemoCollidableModel(new Vector3(20, 0, 20), new Vector3(-90, 0, 0), new Vector3(0.3f, 0.3f, 0.3f), "GibSigil", "Sigil_Full");
 
 
@@ -872,7 +872,6 @@ namespace The_Depths_of_Elune
             // DemoStuff();
             DemoToggleFullscreen();
             checkDialogue();
-            checkGameState();
             SigilPickup();    
             _oldKBState = _newKBState;
 
@@ -1692,21 +1691,6 @@ namespace The_Depths_of_Elune
             {
                 events.Publish(new PlaySfxEvent("celeste_sound", 1, false, null));
                 khaslanaController.hasSpoken = false;
-            }
-        }
-
-        private void checkGameState()
-        {
-            if (khaslanaController.gameWon)
-            {
-                System.Diagnostics.Debug.WriteLine("You won");
-                khaslanaController.gameWon = false;
-            }
-
-            if(mimicController.gameLost)
-            {
-                System.Diagnostics.Debug.WriteLine("You lost");
-                mimicController.gameLost = false;
             }
         }
 

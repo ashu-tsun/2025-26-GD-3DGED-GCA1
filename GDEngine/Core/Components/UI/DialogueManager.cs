@@ -48,7 +48,7 @@ namespace The_Depths_of_Elune.UI
                 return;
             }
             //Check if the player is pressing the key
-            if (_newKeyState.IsKeyDown(Keys.F) && !_oldKeyState.IsKeyDown(Keys.F))
+            if (_newKeyState.IsKeyDown(Keys.E) && !_oldKeyState.IsKeyDown(Keys.E))
             {
                 //Make sure there is dialogue imported into the queue, then start showing it
                 if (_currentDialogue.Count > 0)
