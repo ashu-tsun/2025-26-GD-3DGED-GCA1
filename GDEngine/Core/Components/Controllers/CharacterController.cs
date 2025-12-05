@@ -41,7 +41,7 @@ namespace GDEngine.Core.Components.Controllers
 
         public bool gameWon { get; set; }
         //Range for interaction
-        public float Range { get; set; } = 8.0f;
+        public float Range { get; set; } = 7.0f;
         //Reference to the scene
         public Scene? Scene { get => _scene; set => _scene = value; }
         //The dialogue manager, to allow different dialogue to play and render

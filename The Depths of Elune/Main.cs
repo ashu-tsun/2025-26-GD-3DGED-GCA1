@@ -1409,6 +1409,7 @@ namespace The_Depths_of_Elune
                     doorController.IsLocked = d.IsLocked;
                     doorController.IsKhasDoor = d.IsKhasDoor;
                     doorController.Scene = _scene;
+                    doorController.DialogueManager = _dialogueManager;
 
                     //stores original transform so we can rebuild it later
                     doorController.OriginalPosition = d.Position;
@@ -1447,6 +1448,7 @@ namespace The_Depths_of_Elune
                     doorController.IsLocked = d.IsLocked;
                     doorController.IsKhasDoor = d.IsKhasDoor;
                     doorController.Scene = _scene;
+                    doorController.DialogueManager = _dialogueManager;
 
                     //stores original transform so we can rebuild it later
                     doorController.OriginalPosition = d.Position;
@@ -1653,6 +1655,7 @@ namespace The_Depths_of_Elune
                 }
                 else
                 {
+                    controller.DialogueManager = _dialogueManager;
                     return;
                 }
             }

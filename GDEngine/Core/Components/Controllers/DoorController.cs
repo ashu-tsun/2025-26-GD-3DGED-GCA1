@@ -13,6 +13,7 @@ using GDEngine.Core.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using The_Depths_of_Elune.UI;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace GDEngine.Core.Components.Controllers
@@ -23,7 +24,8 @@ namespace GDEngine.Core.Components.Controllers
         private Transform? _transform;
         private Transform? _playerTransform;
         private Scene? _scene;
-
+        private DialogueManager? _dialogueManager;
+        private int _doorTried = 0;
         private bool _playerNearby = false;
         private bool _isOpened = false;
 
@@ -57,6 +59,9 @@ namespace GDEngine.Core.Components.Controllers
 
         public Scene? Scene { get => _scene; set => _scene = value; }
 
+        //The dialogue manager, to allow different dialogue to play and render
+        public DialogueManager? DialogueManager { get; set; }
+
         #endregion
 
         #region Awake
@@ -83,7 +88,7 @@ namespace GDEngine.Core.Components.Controllers
             //getting the distance between door and camera so when player is near it will only open it
             CheckPlayerDistance();
             var inputSystem = _scene.GetSystem<InputSystem>();
-            if (!_isOpened && _playerNearby && Keyboard.GetState().IsKeyDown(Keys.E))
+            if (!_isOpened && _playerNearby && Keyboard.GetState().IsKeyDown(Keys.E) && DialogueManager != null && !DialogueManager.IsDialogueActive)
             {
                 OpenDoor();
             }
@@ -152,14 +157,40 @@ namespace GDEngine.Core.Components.Controllers
             }
             else
             {
-                if(IsKhasDoor)
+                //If its Khaslana's door and its locked
+                if (IsKhasDoor)
                 {
                     System.Diagnostics.Debug.WriteLine("Door is locked. You need 3 sigils, (you have " + sigilCount + " sigils)");
-                    return;
+                    if(_doorTried == 0 || _doorTried % 2 == 0)
+                    {
+                        var dialogue = new List<DialogueLine>();
+                        dialogue.Add(new DialogueLine("Elysia", "The door won't budge! What's with this strange magical lock? 3 sigils? I have " + sigilCount + " sigils"));
+                        DialogueManager.StartDialogue(dialogue);
+                        _doorTried++;
+                    }
+                    //To close the dialogue
+                    else
+                    {
+                        DialogueManager.EndDialogue();
+                    }
+                        return;
                 }
+                //If another door is locked
                 else
                 {
                     System.Diagnostics.Debug.WriteLine("Door is locked.");
+                    if (_doorTried == 0 || _doorTried % 2 == 0)
+                    {
+                        var dialogue = new List<DialogueLine>();
+                        dialogue.Add(new DialogueLine("Elysia", "The door won't budge!"));
+                        DialogueManager.StartDialogue(dialogue);
+                        _doorTried++;
+                    }
+                    else
+                    {
+                        DialogueManager.EndDialogue();
+                    }
+
                 }
                
             }
